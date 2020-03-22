@@ -1,0 +1,273 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Angular",
+    "version": "1.0.0",
+    "description": "2.0 API definition.",
+    "contact": {
+      "name": "Prat Nudklin",
+      "url": "http://pratz.tech",
+      "email": "pratz.nud@gmail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0"
+    }
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/content": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Successful response - returns an array of `Content` entities.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Content"
+              }
+            }
+          }
+        },
+        "operationId": "getContents",
+        "summary": "List All Contents",
+        "description": "Gets a list of all `Content` entities."
+      },
+      "post": {
+        "parameters": [
+          {
+            "name": "body",
+            "description": "A new `Content` to be created.",
+            "schema": {
+              "$ref": "#/definitions/Content"
+            },
+            "in": "body",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful response."
+          }
+        },
+        "operationId": "createContent",
+        "summary": "Create a Content",
+        "description": "Creates a new instance of a `Content`."
+      }
+    },
+    "/content/{contentId}": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Successful response - returns a single `Content`.",
+            "schema": {
+              "$ref": "#/definitions/Content"
+            }
+          },
+          "404": {
+            "description": "Content ID can not be found"
+          }
+        },
+        "operationId": "getContent",
+        "summary": "Get a Content",
+        "description": "Gets the details of a single instance of a `Content`."
+      },
+      "put": {
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Updated `Content` information.",
+            "schema": {
+              "$ref": "#/definitions/Content"
+            },
+            "in": "body",
+            "required": true
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Successful response."
+          }
+        },
+        "operationId": "updateContent",
+        "summary": "Update a Content",
+        "description": "Updates an existing `Content`."
+      },
+      "delete": {
+        "responses": {
+          "204": {
+            "description": "Successful response."
+          },
+          "404": {
+            "description": "Content ID can not be found"
+          }
+        },
+        "operationId": "deleteContent",
+        "summary": "Delete a Content",
+        "description": "Deletes an existing `Content`."
+      },
+      "parameters": [
+        {
+          "name": "contentId",
+          "description": "A unique identifier for a `Content`.",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ]
+    },
+    "/users": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Successful response - returns an array of `User` entities.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
+        },
+        "operationId": "getusers",
+        "summary": "List All users",
+        "description": "Gets a list of all `User` entities."
+      },
+      "post": {
+        "parameters": [
+          {
+            "name": "body",
+            "description": "A new `User` to be created.",
+            "schema": {
+              "$ref": "#/definitions/User"
+            },
+            "in": "body",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful response."
+          }
+        },
+        "operationId": "createUser",
+        "summary": "Create a User",
+        "description": "Creates a new instance of a `User`."
+      }
+    },
+    "/users/{userId}": {
+      "get": {
+        "parameters": [
+          {
+            "name": "userId",
+            "description": "A unique identifier for a `User`.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response - returns a single `User`.",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        },
+        "operationId": "getUser",
+        "summary": "Get a User",
+        "description": "Gets the details of a single instance of a `User`."
+      },
+      "put": {
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Updated `User` information.",
+            "schema": {
+              "$ref": "#/definitions/User"
+            },
+            "in": "body",
+            "required": true
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Successful response."
+          }
+        },
+        "operationId": "updateUser",
+        "summary": "Update a User",
+        "description": "Updates an existing `User`."
+      },
+      "delete": {
+        "responses": {
+          "204": {
+            "description": "Successful response."
+          }
+        },
+        "operationId": "deleteUser",
+        "summary": "Delete a User",
+        "description": "Deletes an existing `User`."
+      },
+      "parameters": [
+        {
+          "name": "userId",
+          "description": "A unique identifier for a `User`.",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ]
+    }
+  },
+  "definitions": {
+    "Content": {
+      "title": "Root Type for Content",
+      "description": "Content data type for both entity and rest model",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "The id of the Content.",
+          "type": "integer"
+        },
+        "content": {
+          "description": "The description of the Content.",
+          "type": "string"
+        }
+      },
+      "example": "{\n    \"name\": \"My Content\",\n    \"description\": \"Just a little Content for your review.\"\n}"
+    },
+    "User": {
+      "description": "User data type for both entity and rest model",
+      "required": [
+        "userId",
+        "password"
+      ],
+      "type": "object",
+      "properties": {
+        "password": {
+          "format": "password",
+          "description": "",
+          "type": "string"
+        },
+        "nickname": {
+          "description": "",
+          "type": "string"
+        },
+        "email": {
+          "description": "",
+          "type": "string"
+        },
+        "userId": {
+          "description": "",
+          "type": "string"
+        }
+      }
+    }
+  }
+}
